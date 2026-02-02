@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Module for calculating matrix shape"""
 
+
 def matrix_shape(matrix):
     """Calculates the shape of a matrix"""
     shape = []
@@ -8,4 +9,5 @@ def matrix_shape(matrix):
         shape.append(len(matrix))
         matrix = matrix[0]
     return shape
+
 
