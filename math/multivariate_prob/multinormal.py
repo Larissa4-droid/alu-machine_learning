@@ -34,6 +34,7 @@ class MultiNormal:
         # (d, n) matrix multiplied by (n, d) results in (d, d)
         self.cov = np.dot(data_centered, data_centered.T) / (n - 1)
 
+
 class MultiNormal:
     """
     Represents a Multivariate Normal distribution
@@ -53,6 +54,8 @@ class MultiNormal:
         self.mean = np.mean(data, axis=1, keepdims=True)
         data_centered = data - self.mean
         self.cov = np.dot(data_centered, data_centered.T) / (n - 1)
+
+
     def pdf(self, x):
         """
         Calculates the PDF at a data point
