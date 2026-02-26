@@ -3,6 +3,8 @@
 Defines the MultiNormal class
 """
 import numpy as np
+
+
 class MultiNormal:
     """
     Represents a Multivariate Normal distribution
@@ -28,10 +30,10 @@ class MultiNormal:
         # Center the data by subtracting the mean
         # (d, n) - (d, 1) broadcasts correctly across all n points
         data_centered = data - self.mean
-
         # Calculate covariance: (X_centered @ X_centered.T) / (n - 1)
         # (d, n) matrix multiplied by (n, d) results in (d, d)
         self.cov = np.dot(data_centered, data_centered.T) / (n - 1)
+
 class MultiNormal:
     """
     Represents a Multivariate Normal distribution
@@ -46,6 +48,7 @@ class MultiNormal:
             raise TypeError("data must be a 2D numpy.ndarray")
         d, n = data.shape
         if n < 2:
+
             raise ValueError("data must contain multiple data points")
         self.mean = np.mean(data, axis=1, keepdims=True)
         data_centered = data - self.mean
