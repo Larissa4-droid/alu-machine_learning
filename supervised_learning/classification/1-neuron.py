@@ -44,4 +44,3 @@ class Neuron:
             Getter
         '''
         return self.__A
-    

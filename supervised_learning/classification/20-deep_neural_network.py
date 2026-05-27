@@ -87,4 +87,3 @@ class DeepNeuralNetwork:
         cost = self.cost(Y, A)
         A = np.where(A >= 0.5, 1, 0)
         return A, cost
-    

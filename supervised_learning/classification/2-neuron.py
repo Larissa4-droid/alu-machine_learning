@@ -51,4 +51,3 @@ class Neuron:
         '''
         self.__A = 1 / (1 + np.exp(-np.dot(self.__W, X) - self.__b))
         return self.__A
-    

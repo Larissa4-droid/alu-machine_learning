@@ -81,4 +81,3 @@ class Neuron:
         self.__W = self.__W - (alpha * dw.T)
         self.__b = self.__b - (alpha * db)
         return self.__W, self.__b
-    
