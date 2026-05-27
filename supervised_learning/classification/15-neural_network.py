@@ -180,3 +180,4 @@ class NeuralNetwork:
             plt.show()
 
         return evaluation
+    

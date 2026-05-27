@@ -141,3 +141,4 @@ class Neuron:
             plt.show()
 
         return evaluation
+    
