@@ -109,4 +109,3 @@ class Neuron:
         evaluation = self.evaluate(X, Y)
 
         return evaluation
- 
