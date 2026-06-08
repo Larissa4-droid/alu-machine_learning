@@ -14,4 +14,4 @@ if __name__ == '__main__':
     print(Z[:10])
     Z_norm = batch_norm(Z, gamma, beta, 1e-8)
     print(Z_norm[:10])
-    
+  

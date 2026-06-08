@@ -16,4 +16,3 @@ if __name__ == '__main__':
         plt.title('SF Maximum Temperatures in October 2018')
         plt.legend(['actual', 'moving_average'])
         plt.show()
-        

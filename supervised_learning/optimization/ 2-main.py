@@ -20,4 +20,3 @@ if __name__ == '__main__':
 
     print(X_shuffled)
     print(Y_shuffled)
-    

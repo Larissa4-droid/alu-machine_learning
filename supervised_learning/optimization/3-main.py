@@ -31,4 +31,4 @@ if __name__ == '__main__':
                                  epochs=10, load_path='./graph.ckpt',
                                  save_path='./model.ckpt')
     print('Model saved in path: {}'.format(save_path))
-    
+  
