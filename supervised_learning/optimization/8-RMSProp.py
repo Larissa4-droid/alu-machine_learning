@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-""" Training with momentum
-"""
 
 import tensorflow as tf
 
