@@ -145,8 +145,7 @@ class NST:
                 len(input_layer.shape) != 4):
             raise TypeError("input_layer must be a tensor of rank 4")
 
-        # Result using tf.linalg.matmul: input_layer transposed multiplied by itself
-        # shape (1, h, w, c) -> channels are the features
+        # Flattens spatial dimensions: shape (1, h, w, c) -> (h * w, c)
         channels = input_layer.shape[-1]
         a = tf.reshape(input_layer, shape=(-1, channels))
         n = tf.cast(tf.shape(a)[0], tf.float32)
