@@ -162,8 +162,7 @@ class NST:
         Sets the public instance attributes gram_style_features and
         content_feature.
         """
-        # VGG19 expects inputs preprocessed with vgg19.preprocess_input
-        # Scaled images are in [0, 1], so we scale to [0, 255] before preprocess
+        # VGG19 expects inputs preprocessed
         style_preprocessed = tf.keras.applications.vgg19.preprocess_input(
             self.style_image * 255
         )
