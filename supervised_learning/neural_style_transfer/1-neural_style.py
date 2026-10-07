@@ -77,6 +77,7 @@ class NST:
 
         image_expanded = tf.expand_dims(image, axis=0)
 
+
         resized_image = tf.image.resize_bicubic(
             image_expanded,
             size=[h_new, w_new]
@@ -90,7 +91,8 @@ class NST:
     def load_model(self):
         """
         Creates the model used to calculate cost using VGG19.
-        Replaces MaxPooling2D layers with AveragePooling2D.
+        Replaces MaxPooling2D layers with AveragePooling2D and truncates
+        the model graph after block5_conv2.
 
         Returns:
             tf.keras.Model: Model outputting the style layers
@@ -101,12 +103,8 @@ class NST:
             weights='imagenet'
         )
 
-        # Freeze the base model weights
-        vgg.trainable = False
-
-        # Build custom model graph replacing MaxPooling2D with AveragePooling2D
         x = vgg.input
-        model_outputs = {}
+        model_outputs = []
 
         for layer in vgg.layers[1:]:
             if isinstance(layer, tf.keras.layers.MaxPooling2D):
@@ -119,12 +117,16 @@ class NST:
             else:
                 x = layer(x)
 
-            if layer.name in self.style_layers or layer.name == self.content_layer:
-                model_outputs[layer.name] = x
+            if layer.name in self.style_layers:
+                model_outputs.append(x)
 
-        outputs = [model_outputs[name] for name in self.style_layers]
-        outputs.append(model_outputs[self.content_layer])
 
-        model = tf.keras.Model(inputs=vgg.input, outputs=outputs)
+            if layer.name == self.content_layer:
+                model_outputs.append(x)
+                break
+
+        model = tf.keras.Model(inputs=vgg.input, outputs=model_outputs)
+        model.trainable = False
+
         self.model = model
         return model
