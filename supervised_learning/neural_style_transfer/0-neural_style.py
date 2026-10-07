@@ -25,6 +25,7 @@ class NST:
             alpha (float/int): Weight for content cost (default 1e4)
             beta (float/int): Weight for style cost (default 1)
         """
+        
         if (not isinstance(style_image, np.ndarray) or
                 style_image.ndim != 3 or style_image.shape[2] != 3):
             raise TypeError(
@@ -84,4 +85,6 @@ class NST:
         scaled_image = resized_image / 255.0
         scaled_image = tf.clip_by_value(scaled_image, 0.0, 1.0)
 
+
         return scaled_image
+    
