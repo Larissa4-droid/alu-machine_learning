@@ -3,6 +3,7 @@
 import numpy as np
 import tensorflow as tf
 
+
 class NST:
     """Class that performs tasks for neural style transfer"""
     style_layers = [
@@ -75,6 +76,7 @@ class NST:
         w_new = int(round(w * scale))
 
         image_expanded = tf.expand_dims(image, axis=0)
+
         resized_image = tf.image.resize_bicubic(
             image_expanded,
             size=[h_new, w_new]
@@ -117,10 +119,10 @@ class NST:
             if layer.name in self.style_layers:
                 model_outputs.append(x)
 
-
             if layer.name == self.content_layer:
                 model_outputs.append(x)
                 break
+
         model = tf.keras.Model(inputs=vgg.input, outputs=model_outputs)
         model.trainable = False
 
