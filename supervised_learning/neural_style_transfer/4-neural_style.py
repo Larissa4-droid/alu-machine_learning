@@ -146,6 +146,7 @@ class NST:
                 len(input_layer.shape) != 4):
             raise TypeError("input_layer must be a tensor of rank 4")
 
+        # Flattens spatial dimensions: shape (1, h, w, c) -> (h * w, c)
         channels = input_layer.shape[-1]
         a = tf.reshape(input_layer, shape=(-1, channels))
         n = tf.cast(tf.shape(a)[0], tf.float32)
@@ -195,8 +196,7 @@ class NST:
 
         c = style_output.shape[-1]
         err_msg = (
-            "gram_target must be a tensor of shape [1, {}, {}] where {{c}} "
-            "is the number of channels in style_output".format(c, c)
+            "gram_target must be a tensor of shape [1, {0}, {0}]".format(c)
         )
 
         if (not isinstance(gram_target, (tf.Tensor, tf.Variable)) or
