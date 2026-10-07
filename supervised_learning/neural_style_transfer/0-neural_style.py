@@ -74,18 +74,14 @@ class NST:
         h_new = int(round(h * scale))
         w_new = int(round(w * scale))
 
-        # Add batch dimension: (1, h, w, 3)
         image_expanded = tf.expand_dims(image, axis=0)
 
-        # Resize using bicubic interpolation
         resized_image = tf.image.resize_bicubic(
             image_expanded,
             size=[h_new, w_new]
         )
 
-        # Rescale pixel values from [0, 255] to [0, 1] and clip bounds
         scaled_image = resized_image / 255.0
         scaled_image = tf.clip_by_value(scaled_image, 0.0, 1.0)
 
         return scaled_image
-    
