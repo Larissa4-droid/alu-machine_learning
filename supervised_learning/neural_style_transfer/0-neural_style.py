@@ -88,3 +88,4 @@ class NST:
         scaled_image = tf.clip_by_value(scaled_image, 0.0, 1.0)
 
         return scaled_image
+    
